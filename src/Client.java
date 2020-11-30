@@ -12,21 +12,27 @@ public class Client {
         this.prenom = prenom;
         this.mail = mail;
     }
-    public String toString() {
-        String affichage = prenom + " " + nom + " : " + mail ;
-        return affichage;
+    public String nameToString() {
+        String affichageNom = prenom + " " + nom;
+        return affichageNom;
+    }
+    public String mailToString() {
+        String affichageMail = mail ;
+        return affichageMail;
     }
 
     public static void newClient(List<Client> listeClient, Scanner sc) {
 
-        System.out.println("Veuillez saisir votre prénom : ");
+        System.out.println(Main.newLine + "Veuillez saisir votre prénom : ");
         String newPrenom = sc.nextLine();
-        System.out.println("Veuillez saisir votre nom : ");
+        System.out.println(Main.newLine + "Veuillez saisir votre nom : ");
         String newNom = sc.nextLine();
-        System.out.println("Veuillez saisir votre adresse mail : ");
+        System.out.println(Main.newLine + "Veuillez saisir votre adresse mail : ");
         String newMail = sc.nextLine();
         Client newClient = new Client(newPrenom, newNom, newMail);
         listeClient.add(newClient);
-        System.out.println("Votre profil :"+ newClient.toString() +" a bien été enregistré. Vous pouvez maintenant louer un film. Bonne visite!");
+        System.out.println(Main.newLine + ConsoleColors.GREEN + "---> Votre profil a bien été enregistré. <---" + ConsoleColors.RESET);
+        System.out.println(Main.newLine + "Bienvenue, " + newClient.nameToString() + ". Vous êtes connecté avec l'adresse mail suivante : " + newClient.mailToString() + ".");
+        System.out.println(Main.newLine + "Vous pouvez maintenant accèder à nos services. Bonne visite chez Film Mania !" + Main.newLine);
     }
 }

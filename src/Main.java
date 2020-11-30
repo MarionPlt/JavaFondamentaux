@@ -15,17 +15,17 @@ public class Main {
     
     
     public static void filmDataBase() {
-        Film test = new Film("Die Hard", "Bruce Willis", "1986", "Jean Valjean", "K7", true);
-        Film test2 = new Film("Die Hard2", "Bruce Willis", "1994", "Jean Valjean", "K7", true);
-        Film test3 = new Film("Die Hard3", "Bruce Willis", "1999", "Jean Valjean", "DVD", true);
-        Film test4 = new Film("Die Hard4", "Bruce Willis", "2007", "Jean Valjean", "Blue-ray", false);
-        Film test5 = new Film("Die Hard5", "Bruce Willis", "2016", "Jean Valjean", "USB", false);
+        Film film1 = new Film("Die Hard", "Bruce Willis", "1986", "Jean Valjean", "K7", true);
+        Film film2 = new Film("Die Hard2", "Bruce Willis", "1994", "Jean Valjean", "K7", true);
+        Film film3 = new Film("Die Hard3", "Bruce Willis", "1999", "Jean Valjean", "DVD", true);
+        Film film4 = new Film("Die Hard4", "Bruce Willis", "2007", "Jean Valjean", "Blue-ray", false);
+        Film film5 = new Film("Die Hard5", "Bruce Willis", "2016", "Jean Valjean", "USB", false);
 
-        filmList.add(test);
-        filmList.add(test2);
-        filmList.add(test3);
-        filmList.add(test4);
-        filmList.add(test5);
+        filmList.add(film1);
+        filmList.add(film2);
+        filmList.add(film3);
+        filmList.add(film4);
+        filmList.add(film5);
     }
     
     public static boolean choixRetour(Scanner sc) {
@@ -36,8 +36,13 @@ public class Main {
             retour = retour.toLowerCase();
             switch(retour) {
                 case "y" :
+                case "yes" :
+                case "o" :
+                case "oui" :
                     return true;
                 case "n" :
+                case "no" :
+                case "non" :
                     return false;
                 default :
                     break;
@@ -47,7 +52,7 @@ public class Main {
     }
 
     public static void accueil(Scanner sc) {
-        Scanner sc = new Scanner(System.in);
+        //Scanner sc = new Scanner(System.in);
         int choix = 0;
         boolean connected = true;
 
@@ -69,8 +74,8 @@ public class Main {
                 sc.nextLine();
                 switch (choix) {
                     case 1:
-                        System.out.println("Vous ajoutez un film : ");
-                        System.out.println("Entrer un titre : ");
+                        System.out.println(newLine + ConsoleColors.BOLD + "---> Veuillez ajouter un film en remplissant les champs suivants <---" + ConsoleColors.RESET);
+                        System.out.println(newLine + "Entrer un titre : ");
                         titre = sc.nextLine();
                         System.out.println(newLine + "Entrer un acteur : ");
                         acteur = sc.nextLine();
@@ -83,27 +88,29 @@ public class Main {
                         
                         filmList.add(new Film(titre, acteur, annee, realisateur, support, false));
                         
-                        System.out.println(newLine + "--> Votre film a bien été ajouté <--" + newLine);
+                        System.out.println(newLine + ConsoleColors.GREEN + "---> Votre film a bien été ajouté <---" + ConsoleColors.RESET + newLine);
                         break;
                     case 2:
-                        System.out.println("Vous recherchez un film : ");
-                        System.out.println("Entrer un titre : ");
-                        titre = sc.nextLine();
-                        Film.printFilmByName(titre, filmList);
+                        System.out.println(newLine + ConsoleColors.BOLD + "---> Veuillez saisir le titre du film recherché <---" + ConsoleColors.RESET);
+                        System.out.println(newLine + "Entrer un titre : ");
+                        Film.printFilmByName(filmList, sc);
                         break;
                     case 3:
+                        System.out.println(newLine + ConsoleColors.BOLD + "---> Voici la liste des films présent dans notre vidéothèque <---" + ConsoleColors.RESET + newLine);
                         Film.printFilmByRent(filmList);
                         break;
                     case 4:
+                        System.out.println(newLine + ConsoleColors.BOLD + "---> Voici la liste des films triés par support <---" + ConsoleColors.RESET + newLine);
                         Film.printFilmBySupport(filmList);
                         break;
                     case 5:
-                        System.out.println("Veuillez saisir le titre du film à supprimer");
+                        System.out.println(newLine + ConsoleColors.BOLD + "---> Veuillez supprimer un film en remplissant le champs suivant <---" + ConsoleColors.RESET + newLine);
+                        System.out.println(newLine + "Entrer un titre : ");
                         String filmToRemoved = sc.nextLine();
                         Film.removeFromList(filmToRemoved, filmList);
                         break;
                     default :
-                        System.out.println(ConsoleColors.BOLD + "--> Veuillez saisir un nombre valable <--" + ConsoleColors.RESET + newLine);
+                        System.out.println(ConsoleColors.RED + "---> Veuillez saisir un nombre valable <---" + ConsoleColors.RESET + newLine);
                         break;
                     
                     
@@ -111,17 +118,25 @@ public class Main {
                 connected = choixRetour(sc);
             }
         } catch (Exception e) {
-            System.out.println("Veuillez saisir un nombre valable");
+            System.out.println(ConsoleColors.RED + "---> Veuillez saisir un nombre valable <---" + ConsoleColors.RESET + newLine);
         }
     }
     
 
     public static void main(String[] args) {
-        System.out.println("Bonjour et bienvenu chez Film Mania !");
-        System.out.println();
+        System.out.println("################################################################################################");
+        System.out.println("     ___       ___       ___       ___            ___       ___       ___       ___       ___   ");
+        System.out.println("    /\\  \\     /\\  \\     /\\__\\     /\\__\\          /\\__\\     /\\  \\     /\\__\\     /\\  \\     /\\  \\  ");
+        System.out.println("   /::\\  \\   _\\:\\  \\   /:/  /    /::L_L_        /::L_L_   /::\\  \\   /:| _|_   _\\:\\  \\   /::\\  \\ ");
+        System.out.println("  /::\\:\\__\\ /\\/::\\__\\ /:/__/    /:/L:\\__\\      /:/L:\\__\\ /::\\:\\__\\ /::|/\\__\\ /\\/::\\__\\ /::\\:\\__\\");
+        System.out.println("  \\/\\:\\/__/ \\::/\\/__/ \\:\\  \\    \\/_/:/  /      \\/_/:/  / \\/\\::/  / \\/|::/  / \\::/\\/__/ \\/\\::/  /");
+        System.out.println("     \\/__/   \\:\\__\\    \\:\\__\\     /:/  /         /:/  /    /:/  /    |:/  /   \\:\\__\\     /:/  / ");
+        System.out.println("              \\/__/     \\/__/     \\/__/          \\/__/     \\/__/     \\/__/     \\/__/     \\/__/  ");
+        System.out.println(newLine + "################################################################################################");
+        System.out.println(newLine + ConsoleColors.BOLD + "------------------------> FILM MANIA | Bienvenue dans votre vidéothèque <-----------------------" + ConsoleColors.RESET);
         Scanner sc = new Scanner(System.in);
         filmDataBase();
-        System.out.println("Veuillez créer votre profil utilisateur : ");
+        System.out.println(newLine + ConsoleColors.BOLD + "---> Veuillez créer votre profil utilisateur <---" + ConsoleColors.RESET);
         Client.newClient(clientList, sc);
         accueil(sc);
         sc.close();

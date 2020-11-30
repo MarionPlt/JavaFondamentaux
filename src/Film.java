@@ -24,15 +24,23 @@ public class Film {
         return nom;
     }
 
-    public static void printFilmByName(String filmToSearch, List<Film> filmList){
+    public static void printFilmByName(List<Film> filmList, Scanner sc) {
         List<Film> resList = new ArrayList<Film>();
+
+        String filmToSearch = sc.nextLine();
+        
         for (int i = 0; i < filmList.size() - 1; i++){
             if (filmList.get(i).movieName.contains(filmToSearch)){
                 resList.add(filmList.get(i));
-            }
+            } 
+        }
+        if (resList.size() > 0) {
+            System.out.println(Main.newLine + ConsoleColors.GREEN + "---> Une correspondance a été trouvé pour la recherche \"" + filmToSearch + "\" <---" + ConsoleColors.RESET + Main.newLine);
+            printListFilm(resList);
+        } else {
+            System.out.println(Main.newLine + ConsoleColors.RED + "---> Aucune correspondance n'a été trouvé pour la recherche \"" + filmToSearch + "\" <---" + ConsoleColors.RESET + Main.newLine);
         }
         
-        printListFilm(resList);
     }
     
     public static void printFilmBySupport(List<Film> filmList){
@@ -110,9 +118,9 @@ public class Film {
         }
 
         if (isMovieBeenDeleted) {
-            System.out.println(Main.newLine + "---> Le film a bien été supprimé. <---" + Main.newLine);
+            System.out.println(Main.newLine + ConsoleColors.GREEN + "---> Le film a bien été supprimé. <---" + ConsoleColors.RESET + Main.newLine);
         } else {
-            System.out.println(Main.newLine + "---> Ce titre n'existe pas dans notre base de donnée. <---" + Main.newLine);
+            System.out.println(Main.newLine + ConsoleColors.RED + "---> Ce titre n'existe pas dans notre base de donnée. <---" + ConsoleColors.RESET + Main.newLine);
         }
         
     }
