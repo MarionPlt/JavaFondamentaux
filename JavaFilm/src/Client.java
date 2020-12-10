@@ -5,7 +5,7 @@ public class Client {
     String nom;
     String prenom;
     String mail;
-    static List<Film> listFilmClient;
+    List<Film> listFilmClient;
 
     Client(String prenom, String nom, String mail) {
         this.nom = nom;
@@ -39,16 +39,16 @@ public class Client {
 
     }
 
-    public  void compteClient(List<Film> filmList, Scanner sc) {
+    public void compteClient(List<Film> filmList, Scanner sc) {
 
         int choix = 0;
-        System.out.println("1 - Louer un film" + Main.newLine);
-        System.out.println("2 - Affichez vos films loué");
+        System.out.println("1 - Louer un film");
+        System.out.println("2 - Afficher vos films loué" + Main.newLine);
         choix = sc.nextInt();
         sc.nextLine();
         switch (choix) {
             case 1:
-                System.out.println(ConsoleColors.RED + "---> Veuillez choisir votre film <---" + ConsoleColors.RESET + Main.newLine);
+                System.out.println(Main.newLine + "---> Veuillez choisir votre film <---" + Main.newLine);
                 Film.printListFilm(filmList, true); // afficher la liste totale des films pour qu'il fasse son choix
                 int choixFilm = sc.nextInt();
                 sc.nextLine();
@@ -60,8 +60,12 @@ public class Client {
 
                 break;
             case 2:
-                System.out.println(ConsoleColors.RED + "---> Voici les films que vous avez loué <---" + ConsoleColors.RESET + Main.newLine);
-                Film.printListFilm(listFilmClient);
+                if (listFilmClient.size() > 0) {
+                    System.out.println(Main.newLine + ConsoleColors.GREEN + "---> Voici les films que vous avez loué <---" + ConsoleColors.RESET + Main.newLine);
+                    Film.printListFilm(listFilmClient);
+                } else {
+                    System.out.println(ConsoleColors.RED + "---> Vous n'avez loué aucun film pour l'instant <---" + ConsoleColors.RESET + Main.newLine);
+                }
                 break;
             default :
                 System.out.println(ConsoleColors.RED + "---> Retour à l'accueil <---" + ConsoleColors.RESET + Main.newLine);

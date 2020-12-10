@@ -1,9 +1,12 @@
-// EPSI B3 Groupe 1 : Eric ENIONA, Michel GUERIN, Marion PLAYOUT, Gabriel QUESNOT
-
 import java.util.*;
 
 public class Main {
+    /*variables
+    get set (private)
+    constructeur
+    Méthodes*/
 
+    //Arraylist filmList;
 
     static List<Film> filmList = new ArrayList<Film>();
     static List<Client> clientList = new ArrayList<Client>();
